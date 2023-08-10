@@ -18,14 +18,13 @@ return new class extends Migration
             $table->string('title' ,2000);
             $table->string('slug' ,2000);
             $table->string('image' , 2000)->nullable();
-            $table->integer('image_mime')->nullable();
+            $table->string('image_mime')->nullable();
             $table->integer('image_size')->nullable();
             $table->longText('description')->nullable();
-            $table->string('status' , 25);
             $table->decimal('price' , 10 ,2);
             $table->unsignedBigInteger('created_by');
             $table->unsignedBigInteger('updated_by');
-            $table->unsignedBigInteger('deleted_by');
+            $table->unsignedBigInteger('deleted_by')->nullable();
             $table->foreign('created_by')->references('id')->on('users');
             $table->foreign('updated_by')->references('id')->on('users');
             $table->foreign('deleted_by')->references('id')->on('users');
