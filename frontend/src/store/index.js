@@ -43,10 +43,17 @@ const store = createStore({
             })
         },
         async getProduct({commit}){
-            console.log(this.state.user.token)
             await axios.get('/products' , { headers: {
                 'Authorization' : `Bearer ${this.state.user.token}`
             }}).then((res) => {
+                commit('setProduct' , res.data.data)
+            })
+        },
+        async createProduct({commit} , payload) {
+            await axios.post('/product/store' , payload , { headers : {
+                'Authorization' : `Bearer ${this.state.user.token}`
+            }}).then((res) => {
+                console.log(res.data.data)
                 commit('setProduct' , res.data.data)
             })
         }
